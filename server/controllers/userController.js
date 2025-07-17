@@ -21,7 +21,7 @@ exports.getUsers = async (_req, res) => {
 };
 
 //get a specific user
-exports.getUsersById = async (req, res) => {
+exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -36,7 +36,7 @@ exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runvalidators: true,
+      runValidators: true,
     });
     if (!user) return res.status(404).json({ message: "User not found" });
     res.json(user);
