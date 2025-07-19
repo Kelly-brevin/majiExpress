@@ -19,5 +19,19 @@ try {
     location,
     password,
   });
-  const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
-} catch (error) {}
+  const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+  res.status(201).json({
+    token,
+    user: {
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      phoneNumber: newUser.phoneNumber,
+      location: newUser.location,
+    },
+  });
+} catch (err) {
+  res.status(500).json({message:"server error",error:error.message})
+}
