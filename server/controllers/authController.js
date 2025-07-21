@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 //register a new user
 exports.register = async (req, res) => {
   const { name, email, phoneNumber, location, password } = req.body;
+  if (!email || !password || !name) {
+    return res.status(400).json({ message: "missing required fields" });
+  }
   try {
     //check for existing useer
     const userExists = await User.findOne({ email });
