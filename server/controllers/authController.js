@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
     return res.status(400).json({ message: "missing required fields" });
   }
   try {
-    //check for existing useer
+    //check for existing user
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "email already registered" });
