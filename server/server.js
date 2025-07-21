@@ -16,6 +16,11 @@ connectDB();
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
 
+//import the auth router
+const authRoutes = require("./routes/authRoutes");
+//mount the router. Technically you can skip the base path and use "/"
+app.use("/api/auth", authRoutes);
+
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
 });
