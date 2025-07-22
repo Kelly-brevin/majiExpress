@@ -42,4 +42,8 @@ exports.loginAdmin = async (req, res) => {
   }
 
   //if the admin exists, we compare the password to allow login
+  const isMatch = await bcrypt.compare(password, admin.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: "Invalid email or pssword" });
+  }
 };
