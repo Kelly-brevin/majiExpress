@@ -18,5 +18,14 @@ const adminSchema = new mongoose.Schema({
 });
 //hash password before saving
 adminSchema.pre("save", async function (next) {
-    
+  //when password is unmodified
+  if (!this.isModified("password")) return next();
+
+  //define the salt
+  const salt = bcrypt.genSalt(10);
+
+  //hash the password
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
+module.exports = mongoose.model("Admin", adminSchema);
