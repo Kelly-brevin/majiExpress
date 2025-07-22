@@ -29,3 +29,17 @@ exports.registerAdmin = async (req, res) => {
 };
 
 //login the admin
+exports.loginAdmin = async (req, res) => {
+  //destructure the admin details from request
+  const { email, password } = req.body;
+
+  //find admin by details
+  const admin = await Admin.findOne({ email });
+
+  //error message if the admin is not found
+  if (!admin) {
+    return res.status(400).json({ message: "Invalid email or password" });
+  }
+
+  //if the admin exists, we compare the password to allow login
+};
