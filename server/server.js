@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 //connect to mongoDB
 connectDB();
 
+//user routes
 const userRoutes = require("./routes/userRoutes");
 app.use("/api/users", userRoutes);
 
@@ -20,6 +21,11 @@ app.use("/api/users", userRoutes);
 const authRoutes = require("./routes/authRoutes");
 //mount the router. Technically you can skip the base path and use "/"
 app.use("/api/auth", authRoutes);
+
+// admin routes
+//define the admin path
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/api/admins", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
