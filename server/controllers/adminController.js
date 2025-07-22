@@ -20,6 +20,12 @@ exports.registerAdmin = async (req, res) => {
 
     //save the new admin
     await newAdmin.save();
-    
-  } catch (error) {}
+    res.status(201).json({ message: "admin registered successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error registering admin", error: error.message });
+  }
 };
+
+//login the admin
