@@ -1,6 +1,6 @@
 // const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const adminSchema = new mongoose.Schema({
   name: {
     type: String,
