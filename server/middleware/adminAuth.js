@@ -21,13 +21,15 @@ const adminAuth = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     //fetch admin from DB and attach to request
-    const admin = await Admin.findById(decoded.id).select("-password");
+    const admin = await Admin.findById(decoded.id).select("-password"); //.select("-password")excludes the password field for security
 
     if (!admin) {
       return res.status(401).json({ message: "not authorized as admin" });
     }
     //attach admin info to request object
     req.admin = admin;
+
+    //pass control to next middleware or route
     next();
   } catch (err) {
     res.status(401).json({ message: "Invalid token" });
