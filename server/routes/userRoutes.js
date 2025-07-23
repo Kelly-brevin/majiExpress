@@ -10,8 +10,13 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 
+//bring in middleware
+const authMiddleware = require("../middlewares/adminAuth");
+
+//restrict access to get all users
+router.route("/", authMiddleware, getUsers);
 // /api/users
-router.route("/").post(createUser).get(getUsers); //method chaining
+router.route("/").post(createUser); //method chaining
 
 // /api/users/:id
 router.route("/:id").get(getUserById).put(updateUser);
