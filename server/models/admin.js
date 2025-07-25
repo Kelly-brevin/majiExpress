@@ -21,7 +21,7 @@ adminSchema.pre("save", async function (next) {
   //when password is unmodified
   if (!this.isModified("password")) return next();
 
-  //define the salt. remember to alwayys use await here
+  //define the salt. remember to always use await here
   const salt = await bcrypt.genSalt(10);
 
   //hash the password

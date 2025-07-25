@@ -14,7 +14,7 @@ const {
 const authMiddleware = require("../middlewares/adminAuth");
 
 //restrict access to get all users
-router.route("/", authMiddleware, getUsers);
+router.get("/", authMiddleware, getUsers);
 // /api/users
 router.route("/").post(createUser); //method chaining
 
