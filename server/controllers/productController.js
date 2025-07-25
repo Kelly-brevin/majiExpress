@@ -25,3 +25,28 @@ exports.getProducts = async (_req, res) => {
     res.status(400).json({ message: "Failed to fetch products" });
   }
 };
+
+//update product(Admin)
+exports.updateProduct = async (req, res) => {
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!updated) return res.status(404).json({ message: "Product not found" });
+    res.json(updated);
+  } catch (error) {
+    res.status(400).json({ message: "Invalid product ID" });
+  }
+};
+
+//delete product(Admin)
+exports.deleteProduct = async (req, res) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Product not found" });
+    res.json({ message: "Product deleted" });
+  } catch (error) {
+    res.status(400).json({ message: "Invalid product id" });
+  }
+};
