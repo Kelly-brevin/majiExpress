@@ -22,3 +22,15 @@ exports.createOrder = async (req, res) => {
 };
 
 //get users's own orders
+exports.getUserOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({
+      user: req.user.id,
+    }).populate("items.product");
+    res.status(200).json(Orders);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching orders" });
+  }
+};
+
+// admin: get all orders
