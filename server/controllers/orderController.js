@@ -27,7 +27,7 @@ exports.getUserOrders = async (req, res) => {
     const orders = await Order.find({
       user: req.user.id,
     }).populate("items.product");
-    res.status(200).json(Orders);
+    res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: "Error fetching orders" });
   }
