@@ -14,3 +14,13 @@ const {
 const userAuth = require("../middlewares");
 
 const adminAuth = require("../middlewares/adminAuth");
+
+//user routes
+router.post("/", createOrder);
+router.get("/my-orders", getUserOrders);
+
+//admin routes
+router.get("/", adminAuth, getAllOrders);
+router.put(":id", adminAuth, updateOrderStatus);
+
+module.exports = router;
