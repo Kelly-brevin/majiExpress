@@ -1,14 +1,24 @@
 //load environment variables
 
 const express = require("express");
+
+//load environment variables
 const dotenv = require("dotenv");
+
 const mongoose = require("mongoose");
 const connectDB = require("./config");
 const cors = require("cors");
+
+//load .env variables to process.env
 dotenv.config();
 const app = express();
+
+//allow cross-origin resource sharing
 app.use(cors());
+
+//parse incoming requests
 app.use(express.json());
+
 const PORT = process.env.PORT || 5000;
 //connect to mongoDB
 connectDB();
