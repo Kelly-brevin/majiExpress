@@ -11,7 +11,7 @@ const {
 } = require("../controllers/orderController");
 
 //create user authentication middleware
-const userAuth = require("../middlewares");
+// const userAuth = require("../middlewares");
 
 const adminAuth = require("../middlewares/adminAuth");
 

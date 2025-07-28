@@ -1,5 +1,4 @@
 // connect to mongoose schema
-const Product = require("../models/Product");
 const product = require("../models/Product");
 
 //create a new product(Admin)
