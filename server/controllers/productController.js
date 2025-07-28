@@ -9,7 +9,7 @@ exports.createProduct = async (req, res) => {
 
     //create a new product based on the details of the request
     const newProduct = await product.create({ size, price, available });
-    res.status(201).json(newProduct);
+    res.status(201).json(newProduct); //.json()parses ougoing data
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
