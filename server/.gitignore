@@ -1,2 +1,3 @@
-node_modules
+#the trailing slash clarifies that it's a folder.
+node_modules/      
 .env 
