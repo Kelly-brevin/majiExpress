@@ -38,12 +38,12 @@ exports.updateProduct = async (req, res) => {
     res.status(400).json({ message: "Invalid product ID" });
   }
 };
-//by default, mongoose does notvalidate on updates(only on .save())
+//by default, mongoose does not validate on updates(only on .save())
 
 //delete product(Admin)
 exports.deleteProduct = async (req, res) => {
   try {
-    const deleted = await Product.findByIdAndDelete(req.params.id);
+    const deleted = await product.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ message: "Product not found" });
     res.json({ message: "Product deleted" });
   } catch (error) {
