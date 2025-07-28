@@ -28,9 +28,9 @@ exports.getProducts = async (_req, res) => {
 //update product(Admin)
 exports.updateProduct = async (req, res) => {
   try {
-    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+    const updated = await product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, //default behaviour. Without this, mongoose returns original document before the update
+      runValidators: true, // tells mongoose to apply schema validation rules during the update
     });
     if (!updated) return res.status(404).json({ message: "Product not found" });
     res.json(updated);
@@ -38,6 +38,7 @@ exports.updateProduct = async (req, res) => {
     res.status(400).json({ message: "Invalid product ID" });
   }
 };
+//by default, mongoose does notvalidate on updates(only on .save())
 
 //delete product(Admin)
 exports.deleteProduct = async (req, res) => {
