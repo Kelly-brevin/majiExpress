@@ -17,7 +17,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Kelly Brevin",
   "license": "ISC",
   "keywords": [],
   "description": ""
