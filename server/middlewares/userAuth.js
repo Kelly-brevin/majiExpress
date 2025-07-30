@@ -12,5 +12,15 @@ const userAuth = async (req, res, next) => {
   try {
     //verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {}
+
+    //find user by decoded ID
+    const user = await user.findById(decoded.id).select("-password");
+    if (!user) {
+      return res.status(401).json({ message: "user not found" });
+    }
+    req.user = user; //attach user to request
+    next();
+  } catch (error) {
+    
+  }
 };
