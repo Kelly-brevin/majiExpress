@@ -11,13 +11,14 @@ const {
 } = require("../controllers/orderController");
 
 //create user authentication middleware
-// const userAuth = require("../middlewares");
+const userAuth = require("../middlewares/userAuth");
 
 const adminAuth = require("../middlewares/adminAuth");
 
 //user routes
-router.post("/", createOrder);
-router.get("/my-orders", getUserOrders);
+router.post("/", userAuth, createOrder); //only logged in users can place orders
+
+router.get("/my-orders", userAuth, getUserOrders);
 
 //admin routes
 router.get("/", adminAuth, getAllOrders);
