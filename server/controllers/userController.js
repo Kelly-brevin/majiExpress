@@ -50,5 +50,26 @@ exports.updateUser = async (req, res) => {
 //login user and return token
 exports.loginUser = async (req, res) => {
   //destructure to get login details
-  const { email, password } = req.body;
+  const { email, phoneNumber } = req.body;
+
+  try {
+    const user = await User.findOne({ email, phoneNumber });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+    //sign jwt
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+    res.json({ token, user });
+  } catch (error) {
+    res.status(500).json({ message: "Login failed", error: error.message });
+  }
+};
+
+//update logged-in user's ptofile
+
+exports.updateOwnProfile = async (req, res) => {
+  
 };
