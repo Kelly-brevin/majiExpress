@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const user = require("../models/User");
 
 //create a new user
 exports.createUser = async (req, res) => {
@@ -43,4 +45,10 @@ exports.updateUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: "invalid ID" });
   }
+};
+
+//login user and return token
+exports.loginUser = async (req, res) => {
+  //destructure to get login details
+  const { email, password } = req.body;
 };
