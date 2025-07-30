@@ -10,6 +10,15 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 
+const {
+  loginUser,
+  updateOwnProfile,
+} = require("../controllers/userController");
+const userAuth = require("../middlewares/userAuth");
+
+router.post("/login", loginUser);
+
+router.put("/profile", userAuth, updateOwnProfile);
 //bring in middleware
 const authMiddleware = require("../middlewares/adminAuth");
 
@@ -20,4 +29,5 @@ router.route("/").post(createUser); //method chaining
 
 // /api/users/:id
 router.route("/:id").get(getUserById).put(updateUser);
+
 module.exports = router;

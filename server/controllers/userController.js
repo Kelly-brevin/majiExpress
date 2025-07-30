@@ -71,5 +71,18 @@ exports.loginUser = async (req, res) => {
 //update logged-in user's ptofile
 
 exports.updateOwnProfile = async (req, res) => {
-  
+  try {
+    const updates = req.body;
+    const userId = req.user.id;
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updates, {
+      new: true,
+      runvalidators: true,
+    });
+    res.json(updatedUser);
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "failed to update profile", error: error.message });
+  }
 };
