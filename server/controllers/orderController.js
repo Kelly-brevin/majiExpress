@@ -60,3 +60,5 @@ exports.updateOrderStatus = async (req, res) => {
     res.status(400).json({ message: "Invalid order ID" });
   }
 };
+
+//remember to test in postman, login and users
