@@ -61,4 +61,5 @@ exports.updateOrderStatus = async (req, res) => {
   }
 };
 
-//remember to test in postman, login and users
+//remember to test in postman, login and users.
+//go over the controllers
