@@ -12,6 +12,7 @@ const {
   updateOwnProfile,
 } = require("../controllers/userController");
 
+//bring in middleware
 const userAuth = require("../middlewares/userAuth");
 
 router.post("/login", loginUser);
