@@ -8,12 +8,10 @@ const {
   getUserById,
   updateUser,
   deleteUser,
-} = require("../controllers/userController");
-
-const {
   loginUser,
   updateOwnProfile,
 } = require("../controllers/userController");
+
 const userAuth = require("../middlewares/userAuth");
 
 router.post("/login", loginUser);
