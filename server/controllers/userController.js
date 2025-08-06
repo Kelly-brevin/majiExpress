@@ -18,6 +18,11 @@ exports.createUser = async (req, res) => {
       password,
       location,
     });
+
+    //auto login after register
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
   } catch (error) {}
 };
 
