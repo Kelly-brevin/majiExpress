@@ -11,7 +11,7 @@ exports.createUser = async (req, res) => {
     if (existing)
       return res.status(400).json({ message: "user already exists" });
 
-    //create new user absed on destructured values
+    //create new user based on destructured values
     const user = await User.create({
       name,
       email,
