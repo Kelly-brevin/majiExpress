@@ -23,7 +23,12 @@ exports.createUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-  } catch (error) {}
+    res.status(201).json({ token, user });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "Error registering user", error: error.message });
+  }
 };
 
 //get all users
