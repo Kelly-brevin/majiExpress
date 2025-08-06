@@ -7,6 +7,8 @@ exports.createUser = async (req, res) => {
   const { name, email, phoneNumber, password, location } = req.body;
   try {
     const existing = await User.findOne({ email });
+    if (existing)
+      return res.status(400).json({ message: "user already exists" });
   } catch (error) {}
 };
 
