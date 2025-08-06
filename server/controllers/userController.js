@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const user = require("../models/User");
+const bcrypt = require("bcrypt");
 
 //create a new user
 exports.createUser = async (req, res) => {
@@ -72,10 +73,10 @@ exports.loginUser = async (req, res) => {
   const { email, phoneNumber } = req.body;
 
   try {
-    const user = await User.findOne({ email, phoneNumber });
+    const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
     //sign jwt
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
