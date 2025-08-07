@@ -3,7 +3,20 @@ const Product = require("../models/Product");
 
 //place a new order(user)
 exports.createOrder = async (req, res) => {
-  
+  try {
+    const { items } = req.body;
+
+    //calculate total price
+    let totalPrice = 0;
+    for (const item of items) {
+      const product = await Product.findById(item.product);
+
+      if (!product) {
+        return res.status(404).json({ message: `Product not found` });
+      }
+      totalPrice +=product.price
+    }
+  } catch (error) {}
 };
 
 //get users's own orders
