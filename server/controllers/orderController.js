@@ -19,8 +19,15 @@ exports.createOrder = async (req, res) => {
 
     const order = await Order.create({
       user: req.user.id, //from auth middleware
+      items,
+      totalPrice,
     });
-  } catch (error) {}
+    res.status(201).json(order);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to place order", error: error.message });
+  }
 };
 
 //get users's own orders
