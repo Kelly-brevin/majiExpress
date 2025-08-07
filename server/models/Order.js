@@ -34,6 +34,10 @@ const orderSchema = new mongoose.Schema(
       enum: ["paid", "unpaid"],
       default: "unpaid",
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
