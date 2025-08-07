@@ -14,8 +14,12 @@ exports.createOrder = async (req, res) => {
       if (!product) {
         return res.status(404).json({ message: `Product not found` });
       }
-      totalPrice +=product.price
+      totalPrice += product.price * item.quantity;
     }
+
+    const order = await Order.create({
+      user: req.user.id, //from auth middleware
+    });
   } catch (error) {}
 };
 
