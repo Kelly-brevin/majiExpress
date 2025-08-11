@@ -69,7 +69,7 @@ exports.updateUser = async (req, res) => {
 //login user and return token
 exports.loginUser = async (req, res) => {
   //destructure to get login details
-  const { email, phoneNumber } = req.body;
+  const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
