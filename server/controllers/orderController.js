@@ -55,7 +55,14 @@ exports.getAllOrders = async (_req, res) => {
 };
 
 //admin: update order status
-exports.updateOrderStatus = async (req, res) => {};
+exports.updateOrderStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const allowedStatus = ["pending", "processing", "deliverd", "cancelled"];
+
+    //validate status
+  } catch (error) {}
+};
 
 //remember to test in postman, login and users.
 //go over the controllers
