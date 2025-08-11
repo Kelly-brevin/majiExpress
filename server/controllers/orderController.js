@@ -55,20 +55,7 @@ exports.getAllOrders = async (_req, res) => {
 };
 
 //admin: update order status
-exports.updateOrderStatus = async (req, res) => {
-  try {
-    const order = await Order.findByIdAndUpdate(
-      req.params.id,
-      { status: req.body.status },
-      { new: true, runValidators: true }
-    );
-
-    if (!order) return res.status(404).json({ message: "Order not found" });
-    res.json(order);
-  } catch (error) {
-    res.status(400).json({ message: "Invalid order ID" });
-  }
-};
+exports.updateOrderStatus = async (req, res) => {};
 
 //remember to test in postman, login and users.
 //go over the controllers
