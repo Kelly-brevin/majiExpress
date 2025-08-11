@@ -58,9 +58,11 @@ exports.getAllOrders = async (_req, res) => {
 exports.updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
-    const allowedStatus = ["pending", "processing", "deliverd", "cancelled"];
+    const allowedStatuses = ["pending", "processing", "deliverd", "cancelled"];
 
     //validate status
+    if (!allowedStatuses.includes(status)) {
+    }
   } catch (error) {}
 };
 
