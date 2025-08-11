@@ -71,8 +71,12 @@ exports.updateOrderStatus = async (req, res) => {
     order.status = status;
     await order.save();
 
-    
-  } catch (error) {}
+    res
+      .status(200)
+      .json({ message: `Order status updated to ${status}`, order });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating order status", error });
+  }
 };
 
 //remember to test in postman, login and users.
