@@ -105,3 +105,4 @@ exports.updateOwnProfile = async (req, res) => {
       .json({ message: "failed to update profile", error: error.message });
   }
 };
+
