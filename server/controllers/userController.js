@@ -87,7 +87,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-//update logged-in user's ptofile
+//update logged-in user's profile
 
 exports.updateOwnProfile = async (req, res) => {
   try {
