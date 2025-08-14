@@ -20,6 +20,6 @@ router.get("/my-orders", userAuth, getUserOrders);
 
 //admin routes
 router.get("/", adminAuth, getAllOrders);
-router.put(":id", adminAuth, updateOrderStatus);
+router.put("/:id", adminAuth, updateOrderStatus);
 
 module.exports = router;
