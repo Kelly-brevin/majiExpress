@@ -38,7 +38,8 @@ exports.getUserOrders = async (req, res) => {
     })
       .populate("items.product")
       .sort({ createdAt: -1 }); //latest first
-    res.status(200).json(orders);
+
+    res.status(200).json({ success: true, count: orders.length, orders });
   } catch (error) {
     res.status(500).json({ message: "Error fetching orders" });
   }
