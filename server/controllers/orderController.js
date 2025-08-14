@@ -72,7 +72,7 @@ exports.updateOrderStatus = async (req, res) => {
       return res.status(404).json({ message: "Order not found" });
     }
     order.status = status;
-    await order.save();
+    await Order.save();
 
     res
       .status(200)
@@ -84,3 +84,4 @@ exports.updateOrderStatus = async (req, res) => {
 
 //remember to test in postman, login and users.
 //go over the controllers
+//add admin filtering to adminGetAllOrders so they can view pending orders
