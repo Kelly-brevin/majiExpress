@@ -1,4 +1,3 @@
-//load environment variables
 
 const express = require("express");
 

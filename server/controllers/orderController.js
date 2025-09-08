@@ -20,9 +20,10 @@ exports.createOrder = async (req, res) => {
     const order = await Order.create({
       user: req.user.id, //from auth middleware
       items,
+      
       totalPrice,
     });
-    res.status(201).json(order);
+    res.status(201).json(order); 
   } catch (error) {
     res
       .status(500)
