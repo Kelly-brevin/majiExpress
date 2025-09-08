@@ -20,10 +20,10 @@ exports.createOrder = async (req, res) => {
     const order = await Order.create({
       user: req.user.id, //from auth middleware
       items,
-      
+
       totalPrice,
     });
-    res.status(201).json(order); 
+    res.status(201).json(order);
   } catch (error) {
     res
       .status(500)
@@ -34,15 +34,17 @@ exports.createOrder = async (req, res) => {
 //get users's own orders
 exports.getUserOrders = async (req, res) => {
   try {
-    const orders = await Order.find({
-      user: req.user.id,
-    })
-      .populate("items.product")
-      .sort({ createdAt: -1 }); //latest first
+    const query = { user: req.user.id };
+    if (req.query.status) {
+      query.status = req.query.status;
+    }
 
+    const orders = await Order.find(query)
+      .populate("items.product")
+      .sort({ createdAt: -1 });
     res.status(200).json({ success: true, count: orders.length, orders });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching orders" });
+    res.status(500).json({ message: "Error fetching orders", error: error });
   }
 };
 
