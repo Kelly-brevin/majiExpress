@@ -55,9 +55,14 @@ exports.getUserOrders = async (req, res) => {
 // admin: get all orders
 exports.getAllOrders = async (_req, res) => {
   try {
+    const query = {};
+    if (req.query.status) {
+      query.status = req.query.status;
+    }
     const orders = await Order.find()
-      .populate("user")
-      .populate("items.product");
+      .populate("user", "name email phone")
+      .populate("items.product", "name price")
+      .sort({ createdAt: -1 });
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: "Error fetching all orders" });
@@ -92,3 +97,7 @@ exports.updateOrderStatus = async (req, res) => {
 //remember to test in postman, login and users.
 //go over the controllers
 //add admin filtering to adminGetAllOrders so they can view pending orders
+
+//filter by status:GET /api/orders?status=pending
+//GET /api/orders?status=delivered
+//GET /api/orders?status=cancelled
