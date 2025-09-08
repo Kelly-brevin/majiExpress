@@ -6,6 +6,10 @@ exports.createOrder = async (req, res) => {
   try {
     const { items } = req.body;
 
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "No items provided" });
+    }
+
     //calculate total price
     let totalPrice = 0;
     for (const item of items) {
