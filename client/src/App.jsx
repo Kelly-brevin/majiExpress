@@ -7,11 +7,9 @@ import Home from "./pages/user/Home";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
